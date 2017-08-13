@@ -1,11 +1,26 @@
 package hello;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Fruit {
 
-    private  int id;
+    @Id
+    private int id;
+    private String name;
 
-    public void setId(int id) {
+    public Fruit(int id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public Fruit() {
+
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -13,22 +28,11 @@ public class Fruit {
         this.name = name;
     }
 
-    private  String name;
-
-    public String getName() {
-        return name;
-    }
-
     public int getId() {
         return id;
     }
 
-    public Fruit(int id, String name){
+    public void setId(int id) {
         this.id = id;
-        this.name = name;
-    }
-
-    public Fruit(){
-
     }
 }

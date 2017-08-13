@@ -16,39 +16,43 @@ import java.util.List;
 public class
 FruitController {
 
-    @ResponseBody @RequestMapping(value = "/rest/fruits",method = RequestMethod.GET)
-    public List getFruits(){
+    @ResponseBody
+    @RequestMapping(value = "/rest/fruits", method = RequestMethod.GET)
+    public List getFruits() {
         return FruitDAO.getFruits();
     }
 
-    @ResponseBody @RequestMapping(value = "/rest/fruits/{id}", method = RequestMethod.GET)
-    public ResponseEntity getFruit(@PathVariable("id") int id){
+    @ResponseBody
+    @RequestMapping(value = "/rest/fruits/{id}", method = RequestMethod.GET)
+    public ResponseEntity getFruit(@PathVariable("id") int id) {
         FruitDAO fruitDAO = new FruitDAO();
         Fruit fruit = fruitDAO.get(id);
-        return new ResponseEntity(fruit,HttpStatus.OK);
+        return new ResponseEntity(fruit, HttpStatus.OK);
     }
 
-    @ResponseBody @RequestMapping(value = "/rest/fruits", method = RequestMethod.POST)
-    public ResponseEntity createFruit(@RequestBody Fruit fruit){
-       FruitDAO fruitDAO = new FruitDAO();
-       fruitDAO.create(fruit);
-       return new ResponseEntity(fruit,HttpStatus.OK);
-    }
-
-    @ResponseBody @RequestMapping(value = "/rest/fruits/{id}", method = RequestMethod.PUT)
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity updateFruit(@PathVariable("id") int id,@RequestBody String name){
+    @ResponseBody
+    @RequestMapping(value = "/rest/fruits", method = RequestMethod.POST)
+    public ResponseEntity createFruit(@RequestBody Fruit fruit) {
         FruitDAO fruitDAO = new FruitDAO();
-        fruitDAO.update(id,name);
-        return new ResponseEntity(id,HttpStatus.OK);
+        fruitDAO.create(fruit);
+        return new ResponseEntity(fruit, HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/rest/fruits/{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity updateFruit(@PathVariable("id") int id, @RequestBody String name) {
+        FruitDAO fruitDAO = new FruitDAO();
+        fruitDAO.update(id, name);
+        return new ResponseEntity(id, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/rest/fruits/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity deleteFruit(@PathVariable("id") int id){
+    public ResponseEntity deleteFruit(@PathVariable("id") int id) {
         FruitDAO fruitDAO = new FruitDAO();
         fruitDAO.delete(id);
-        return new ResponseEntity(id,HttpStatus.OK);
+        return new ResponseEntity(id, HttpStatus.OK);
     }
 
 }
